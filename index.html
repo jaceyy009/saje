@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#17151d">
+    <title>Saje</title>
+    <link rel="stylesheet" href="css/main.css">
+  </head>
+  <body>
+    <div id="loading-screen" class="loading-screen">
+      <div class="loading-panel">
+        <div class="loading-spinner"></div>
+        <h2>Loading Saje...</h2>
+        <p>Please wait a moment.</p>
+      </div>
+    </div>
+
+    <div class="app-container">
+
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <header class="sidebar-header">
+          <h1 class="logo">Saje</h1>
+        </header>
+
+        <nav class="sidebar-navigation">
+          <button class="nav-item active" id="messages-nav">Messages</button>
+          <button class="nav-item" id="friends-nav">Friends</button>
+          <button class="nav-item" id="requests-nav">Requests</button>
+        </nav>
+
+        <div class="sidebar-profile">
+          <div class="profile-avatar" id="profile-avatar"></div>
+          <div class="profile-information">
+            <p class="profile-name">Loading...</p>
+            <p class="profile-username">@username</p>
+          </div>
+          <button id="settings-button" class="icon-button">⚙</button>
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="main-content">
+        <header class="content-header">
+          <h2 id="content-title">Messages</h2>
+        </header>
+
+        <section class="content-area" id="content-area">
+          <div class="empty-state">
+            <h2>Welcome to Saje</h2>
+            <p>Your conversations will appear here. Select a conversation to get started.</p>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <!-- Settings Overlay -->
+    <div id="settings-overlay" class="settings-overlay" hidden>
+      <section class="settings-panel">
+        <header class="settings-header">
+          <h2>Settings</h2>
+          <button id="close-settings" class="icon-button">×</button>
+        </header>
+
+        <div class="settings-content">
+          <div class="settings-profile">
+            <div class="profile-avatar" id="settings-avatar"></div>
+            <div>
+              <h3 id="settings-displayname">Display Name</h3>
+              <p id="settings-username">@username</p>
+            </div>
+          </div>
+
+          <div class="settings-section">
+            <h3>Account</h3>
+            <button class="settings-option" id="edit-profile">Edit Profile</button>
+            <button class="settings-option" id="change-password">Change Password</button>
+          </div>
+
+          <div class="settings-section">
+            <h3>Appearance</h3>
+            <button class="settings-option" id="appearance-settings">Appearance</button>
+          </div>
+
+          <div class="settings-section">
+            <h3>Session</h3>
+            <button class="settings-option danger" id="logout-button">Log Out</button>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Edit Profile Overlay -->
+    <div id="edit-profile-overlay" class="settings-overlay" hidden>
+      <section class="settings-panel">
+        <header class="settings-header">
+          <h2>Edit Profile</h2>
+          <button id="close-edit-profile" class="icon-button">×</button>
+        </header>
+
+        <div class="settings-content">
+          <form id="edit-profile-form">
+            <div class="form-group">
+              <label for="edit-displayname">Display Name</label>
+              <input type="text" id="edit-displayname" maxlength="32" required>
+            </div>
+
+            <div class="form-group">
+              <label>Username</label>
+              <input type="text" id="edit-username" disabled>
+            </div>
+
+            <button type="submit" class="primary-button">Save Changes</button>
+
+            <p id="profile-message" role="status"></p>
+          </form>
+        </div>
+      </section>
+    </div>
+
+    <!-- Change Password Overlay -->
+    <div id="change-password-overlay" class="settings-overlay" hidden>
+      <div class="settings-panel">
+        <div class="settings-header">
+          <h2>Change Password</h2>
+          <button id="close-change-password" class="icon-button">×</button>
+        </div>
+
+        <div class="settings-content">
+          <form id="change-password-form">
+            <div class="form-group">
+              <label for="current-password">Current Password</label>
+              <input type="password" id="current-password" required>
+            </div>
+
+            <div class="form-group">
+              <label for="new-password">New Password</label>
+              <input type="password" id="new-password" minlength="8" required>
+            </div>
+
+            <div class="form-group">
+              <label for="confirm-new-password">Confirm New Password</label>
+              <input type="password" id="confirm-new-password" required>
+            </div>
+
+            <p id="password-message"></p>
+
+            <button type="submit" class="primary-button">Update Password</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Appearance Overlay -->
+    <div id="appearance-overlay" class="settings-overlay" hidden>
+      <div class="settings-panel">
+        <div class="settings-header">
+          <h2>Appearance</h2>
+          <button id="close-appearance" class="icon-button">×</button>
+        </div>
+
+        <div class="settings-content">
+          <div class="form-group">
+            <label for="theme-select">Theme</label>
+            <select id="theme-select">
+              <option value="dark">Dark</option>
+              <option value="light">Light</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="js/app.js"></script>
+  </body>
+</html>
+
+      
