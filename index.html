@@ -47,9 +47,54 @@
         </header>
 
         <section class="content-area" id="content-area">
-          <div class="empty-state">
-            <h2>Welcome to Saje</h2>
-            <p>Your conversations will appear here. Select a conversation to get started.</p>
+
+          <!-- Messages View -->
+          <div id="messages-view">
+            <div class="empty-state">
+              <h2>Welcome to Saje</h2>
+              <p>Your conversations will appear here. Select a conversation to get started.</p>
+            </div>
+          </div>
+
+          <!-- Friends View -->
+          <div id="friends-view" hidden>
+            <div class="friends-header">
+              <h2>Find Friends</h2>
+              <p>Search for people using their Saje username.</p>
+            </div>
+
+            <form id="user-search-form">
+              <div class="form-group">
+                <label for="user-search">Username</label>
+                <input type="text" id="user-search" placeholder="Enter a username..." maxlength="20" required>
+              </div>
+
+              <button type="submit" class="primary-button">Search</button>
+            </form>
+
+            <div id="user-search-results"></div>
+
+            <div class="friends-list">
+              <h3>Your Friends</h3>
+              <div id="friends-container">
+                <p>You haven't added any friends yet.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Requests View -->
+          <div id="requests-view" hidden>
+            <div class="friends-header">
+              <h2>Friends Requests</h2>
+              <p>Manage your incoming and outgoing friend requests.</p>
+            </div>
+
+            <div class="requests-section">
+              <h3>Incoming Requests</h3>
+              <div id="incoming-requests">
+                <p>You don't have any incoming requests.</p>
+              </div>
+            </div>
           </div>
         </section>
       </main>
