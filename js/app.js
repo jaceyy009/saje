@@ -245,9 +245,17 @@ changePasswordForm.addEventListener("submit", async (event) => {
 });
 
 // =========================
-// CHANGE THEME
+// CHANGE AND SAVE THEME
 // =========================
 
+const savedTheme = localStorage.getItem("saje-theme") || "dark";
+
+document.documentElement.dataset.theme = savedTheme;
+themeSelect.value = savedTheme;
+
 themeSelect.addEventListener("change", () => {
-  document.documentElement.dataset.theme = themeSelect.value;
+  const selectedTheme = themeSelect.value;
+  
+  document.documentElement.dataset.theme = selectedTheme;
+  localStorage.setItem("saje-theme", selectedTheme);
 });
