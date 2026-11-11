@@ -267,7 +267,7 @@ themeSelect.addEventListener("change", () => {
 
 const savedAccent = localStorage.getItem("saje-accent") || "#8b5cf6";
 
-document.document.Element.style.setProperty("--accent", savedAccent);
+document.documentElement.style.setProperty("--accent", savedAccent);
 accentSelect.value = savedAccent;
 
 accentSelect.addEventListener("change", () => {
