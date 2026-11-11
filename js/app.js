@@ -273,6 +273,6 @@ accentSelect.value = savedAccent;
 accentSelect.addEventListener("change", () => {
   const selectedAccent = accentSelect.value;
 
-  document.documentElement.style.setProperty("--acent", selectedAccent)p
+  document.documentElement.style.setProperty("--acent", selectedAccent);
   localStorage.setItem("saje-accent", selectedAccent);
 });
