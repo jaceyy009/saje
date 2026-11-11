@@ -39,6 +39,7 @@ const appearanceButton = document.getElementById("appearance-settings");
 const appearanceOverlay = document.getElementById("appearance-overlay");
 const closeAppearance = document.getElementById("close-appearance");
 const themeSelect = document.getElementById("theme-select");
+const accentSelect = document.getElementById("accent-select");
 
 // =========================
 // WINDOW CONTROLS
@@ -151,9 +152,9 @@ onAuthStateChanged(auth, async (user) => {
   hideLoading();
 });
 
-// ============================
+// =========================
 // EDIT PROFILE FORM SUBMISSION
-// ============================
+// =========================
 
 editProfileForm.addEventListener("submit", async (event) => {
   event.preventDefault();
@@ -190,9 +191,9 @@ editProfileForm.addEventListener("submit", async (event) => {
   }
 });
 
-// ===============================
+// =========================
 // CHANGE PASSWORD FORM SUBMISSION
-// ===============================
+// =========================
 
 changePasswordForm.addEventListener("submit", async (event) => {
   event.preventDefault();
@@ -258,4 +259,20 @@ themeSelect.addEventListener("change", () => {
   
   document.documentElement.dataset.theme = selectedTheme;
   localStorage.setItem("saje-theme", selectedTheme);
+});
+
+// =========================
+// CHANGE AND SAVE ACCENT COLOR
+// =========================
+
+const savedAccent = localStorage.getItem("saje-accent") || "#8b5cf6";
+
+document.document.Element.style.setProperty("--accent", savedAccent);
+accentSelect.value = savedAccent;
+
+accentSelect.addEventListener("change", () => {
+  const selectedAccent = accentSelect.value;
+
+  document.documentElement.style.setProperty("--acent", selectedAccent)p
+  localStorage.setItem("saje-accent", selectedAccent);
 });
