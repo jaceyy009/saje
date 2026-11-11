@@ -41,9 +41,49 @@ const closeAppearance = document.getElementById("close-appearance");
 const themeSelect = document.getElementById("theme-select");
 const accentSelect = document.getElementById("accent-select");
 
+const messagesNav = document.getElementById("messages-nav");
+const friendsNav = document.getElementById("friends-nav");
+const requestsNav = document.getElementById("requests-nav");
+
+const messagesView = document.getElementById("messages-view");
+const friendsView = document.getElementById("friends-view");
+const requestsView = document.getElementById("requests-view");
+
+const contentTitle = document.getElementById("content-title");
+
 // =========================
 // WINDOW CONTROLS
 // =========================
+
+function showView(view) {
+  messagesView.hidden = view !== "messages";
+  friendsView.hidden = view !== "friends";
+  requestsView.hidden = view !== "requests";
+
+  messagesNav.classList.toggle("active", view === "messages");
+  friendsNav.classList.toggle("active", view === "friends");
+  requestsNav.classList.toggle("active", view === "requests");
+
+  const titles = {
+    messages: "Messages",
+    friends: "Friends",
+    requests: "Requests"
+  };
+
+  contentTitle.textContent = titles[view];
+}
+
+messagesNav.addEventListener("click", () => {
+  showView("messages");
+});
+
+friendsNav.addEventListener("click", () => {
+  showView("friends");
+});
+
+requestsNav.addEventListener("click", () => {
+  showView("requests");
+});
 
 settingsButton.addEventListener("click", () => {
   settingsOverlay.hidden = false;
