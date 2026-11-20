@@ -135,7 +135,16 @@ userSearchForm.addEventListener("submit", async (event) => {
 
     const userData = userSnapshot.data();
 
-    userSearchResults.textContent = `${userData.displayName} (@${userData.username})`;
+    userSearchResults.innerHTML = `
+      <div class="user-result">
+        <div class="user-result-info">
+          <strong>${userData.displayName}</strong>
+          <span>@${userData.username}</span>
+        </div>
+
+        <button type="button" class="primary-button" id="send-friend-request">Send Friend Request</button>
+      </div>
+    `;
   } catch (error) {
     console.error("Username search error:", error);
     userSearchResults.textContent = "Something went wrong while searching. Please try again.";
