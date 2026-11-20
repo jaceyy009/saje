@@ -18,6 +18,8 @@ const loadingScreen = document.getElementById("loading-screen");
 const loadingTitle = document.getElementById("loading-title");
 const loadingDescription = document.getElementById("loading-description");
 
+let signupInProgress = false;
+
 // =========================
 // HIDE LOADING
 // =========================
@@ -185,6 +187,8 @@ signupForm.addEventListener("submit", async (event) => {
 
   let user = null;
 
+  signupInProgress = true;
+
   try {
     showMessage("Creating your account...");
 
@@ -228,10 +232,16 @@ signupForm.addEventListener("submit", async (event) => {
 
     showMessage("Your Saje account has been created!");
 
+    signupInProgress = false;
+
     signupForm.reset();
+
+    window.location.replace("index.html");
 
     // the chat page redirect will be added here
   } catch (error) {
+    signupInProgress = false;
+    
     console.error(error);
 
     // Remove the newly created Auth account if profile
@@ -268,9 +278,9 @@ signupForm.addEventListener("submit", async (event) => {
 });
 
 onAuthStateChanged(auth, (user) => {
-  if (user) {
+  if (user && !signupInProgress) {
     window.location.replace("index.html");
-  } else {
+  } else if (!user) {
     hideLoading();
   }
 });
