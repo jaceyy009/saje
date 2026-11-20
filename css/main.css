@@ -597,6 +597,13 @@ sidebar-navigation {
    color: var(--danger);
 }
 
+/* =====
+  HIDDEN ENFORCEMENT
+===== */
+
+[hidden] {
+   display: none !important;
+
 /* =========
    MOBILE
 ========= */
