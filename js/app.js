@@ -110,7 +110,7 @@ userSearchForm.addEventListener("submit", async (event) => {
   userSearchResults.textContent = "Searching...";
 
   try {
-    const usernameRef = doc(db, "username", username);
+    const usernameRef = doc(db, "usernames", username);
     const usernameSnapshot = await getDoc(usernameRef);
 
     if (!usernameSnapshot.exists()) {
