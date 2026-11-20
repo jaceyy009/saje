@@ -145,6 +145,12 @@ userSearchForm.addEventListener("submit", async (event) => {
         <button type="button" class="primary-button" id="send-friend-request">Send Friend Request</button>
       </div>
     `;
+
+    const sendRequestButton = document.getElementById("send-friend-request");
+
+    sendRequestButton.addEventListener("click", () => {
+      alert("Friend request functionality coming soon!");
+    });
   } catch (error) {
     console.error("Username search error:", error);
     userSearchResults.textContent = "Something went wrong while searching. Please try again.";
