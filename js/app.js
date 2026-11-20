@@ -3,7 +3,7 @@
 // =========================
 
 import { onAuthStateChanged, updateProfile, signOut, reauthenticateWithCredential, EmailAuthProvider, updatePassword } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
-import { doc, getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+import { doc, getDoc, updateDoc, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 import { auth, db } from "./firebase.js";
 
 // =========================
@@ -51,6 +51,10 @@ const requestsView = document.getElementById("requests-view");
 
 const contentTitle = document.getElementById("content-title");
 
+const userSearchForm = document.getElementById("user-search-form");
+const userSearchInput = document.getElementById("user-search");
+const userSearchResults = document.getElementById("user-search-results");
+
 // =========================
 // WINDOW CONTROLS
 // =========================
@@ -87,6 +91,55 @@ friendsNav.addEventListener("click", () => {
 
 requestsNav.addEventListener("click", () => {
   showView("requests");
+});
+
+// =========================
+// USERNAME SEARCH
+// =========================
+
+userSearchForm.addEventListener("submit", async (event) => {
+  event.preventDefault();
+
+  const username = userSearchInput.value.trim().toLowerCase();
+
+  if (!/^[a-z0-9_]{3,20}$/.test(username)) {
+    userSearchResults.textContent = "Enter a valid username (3-20 letters, numbers, or underscores).";
+    return;
+  }
+
+  userSearchResults.textContent = "Searching...";
+
+  try {
+    const usernameRef = doc(db, "username", username);
+    const usernameSnapshot = await getDoc(usernameRef);
+
+    if (!usernameSnapshot.exists()) {
+      userSearchResults.textContent = "No user found with that username.";
+      return;
+    }
+
+    const userId = usernameSnapshot.data().uid;
+
+    if (userId === auth.currentUser.uid) {
+      userSearchResults.textContent = "That's your own account!";
+      return;
+    }
+
+    const userRef = doc(db, "users", userId);
+    const userSnapshot = await getDoc(userRef);
+
+    if (!userSnapshot.exists()) {
+      userSearchResults.textContent = "Unable to retrieve that user's profile.";
+      return;
+    }
+
+    const userData = userSnapshot.data();
+
+    userSearchResults.textContent = `${userData.displayName} (@${userData.username})`;
+  } catch (error) {
+    console.error("Username search error:", error);
+    userSearchResults.textContent = "Something went wrong while searching. Please try again.";
+  }
 });
 
 settingsButton.addEventListener("click", () => {
