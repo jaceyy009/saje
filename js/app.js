@@ -55,6 +55,10 @@ const contentTitle = document.getElementById("content-title");
 // WINDOW CONTROLS
 // =========================
 
+// =========================
+// MAIN NAVIGATION
+// =========================
+
 function showView(view) {
   messagesView.hidden = view !== "messages";
   friendsView.hidden = view !== "friends";
@@ -141,7 +145,7 @@ closeAppearance.addEventListener("click", () => {
   appearanceOverlay.hidden = true;
 });
 
-appearanceOverlay.addEventListener("click", () => {
+appearanceOverlay.addEventListener("click", (event) => {
   if (event.target === appearanceOverlay) {
     appearanceOverlay.hidden = true;
   }
@@ -313,6 +317,6 @@ accentSelect.value = savedAccent;
 accentSelect.addEventListener("change", () => {
   const selectedAccent = accentSelect.value;
 
-  document.documentElement.style.setProperty("--acent", selectedAccent);
+  document.documentElement.style.setProperty("--accent", selectedAccent);
   localStorage.setItem("saje-accent", selectedAccent);
 });
